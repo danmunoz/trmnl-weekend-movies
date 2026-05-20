@@ -1,0 +1,94 @@
+<div class="layout layout--col layout--stretch-x wm-shell wm-shell--quadrant">
+  {% if setup_needed %}
+    <section class="wm-empty wm-empty--compact wm-card">
+      <p class="wm-kicker">Movie Picker</p>
+      <h1 class="wm-empty__title">Choose a region.</h1>
+      <p class="wm-empty__body">Select the theatrical market you want the recommendations to cover.</p>
+    </section>
+  {% elsif no_results %}
+    <section class="wm-empty wm-empty--compact wm-card">
+      <p class="wm-kicker">{{ region_name }}</p>
+      <h1 class="wm-empty__title">No slate.</h1>
+      <p class="wm-empty__body">{{ status_message }}</p>
+    </section>
+  {% else %}
+    <section class="wm-card wm-chip-card wm-chip-card--quadrant">
+      <div class="wm-quadrant-grid">
+        <article class="wm-quadrant-pick">
+          <div class="wm-poster-frame wm-poster-frame--quadrant-tile">
+            {% if hero_poster_url != blank %}
+              <img class="wm-poster image image-dither image--cover" src="{{ hero_poster_url }}" alt="{{ hero.title }} poster">
+            {% else %}
+              <div class="wm-poster--placeholder">{{ hero.title }}</div>
+            {% endif %}
+          </div>
+          <div class="wm-quadrant-copy">
+            <p class="wm-quadrant-title wm-line-clamp-2">{{ hero.title }}</p>
+            {% if hero_genres_display != blank %}
+              <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="genre" data-wm-quadrant-priority="1">{{ hero_genres_display | strip }}</p>
+            {% endif %}
+            <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="runtime" data-wm-quadrant-priority="2">Runtime: {{ hero_runtime_display }}</p>
+            {% if hero.overview != blank %}
+              <p class="wm-quadrant-summary" data-wm-quadrant-optional="summary" data-wm-quadrant-priority="3" data-wm-fit-summary="true">{{ hero.overview | strip_html }}</p>
+            {% endif %}
+          </div>
+        </article>
+
+        {% if support_one != blank %}
+          <article class="wm-quadrant-pick">
+            <div class="wm-poster-frame wm-poster-frame--quadrant-tile">
+              {% if support_one_poster_url != blank %}
+                <img class="wm-poster image image-dither image--cover" src="{{ support_one_poster_url }}" alt="{{ support_one.title }} poster">
+              {% else %}
+                <div class="wm-poster--placeholder">{{ support_one.title }}</div>
+              {% endif %}
+            </div>
+            <div class="wm-quadrant-copy">
+              <p class="wm-quadrant-title wm-line-clamp-2">{{ support_one.title }}</p>
+              {% if support_one_genres_display != blank %}
+                <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="genre" data-wm-quadrant-priority="1">{{ support_one_genres_display | strip }}</p>
+              {% endif %}
+              <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="runtime" data-wm-quadrant-priority="2">Runtime: {{ support_one_runtime_display }}</p>
+              {% if support_one.overview != blank %}
+                <p class="wm-quadrant-summary" data-wm-quadrant-optional="summary" data-wm-quadrant-priority="3" data-wm-fit-summary="true">{{ support_one.overview | strip_html }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
+
+        {% if support_two != blank %}
+          <article class="wm-quadrant-pick">
+            <div class="wm-poster-frame wm-poster-frame--quadrant-tile">
+              {% if support_two_poster_url != blank %}
+                <img class="wm-poster image image-dither image--cover" src="{{ support_two_poster_url }}" alt="{{ support_two.title }} poster">
+              {% else %}
+                <div class="wm-poster--placeholder">{{ support_two.title }}</div>
+              {% endif %}
+            </div>
+            <div class="wm-quadrant-copy">
+              <p class="wm-quadrant-title wm-line-clamp-2">{{ support_two.title }}</p>
+              {% if support_two_genres_display != blank %}
+                <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="genre" data-wm-quadrant-priority="1">{{ support_two_genres_display | strip }}</p>
+              {% endif %}
+              <p class="wm-quadrant-meta wm-line-clamp-1" data-wm-quadrant-optional="runtime" data-wm-quadrant-priority="2">Runtime: {{ support_two_runtime_display }}</p>
+              {% if support_two.overview != blank %}
+                <p class="wm-quadrant-summary" data-wm-quadrant-optional="summary" data-wm-quadrant-priority="3" data-wm-fit-summary="true">{{ support_two.overview | strip_html }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+</div>
+<div class="title_bar">
+  <img class="image" src="https://trmnl.com/images/plugins/trmnl--render.svg" alt="">
+  <span class="title">Weekend Movie Picker</span>
+  <span class="instance">
+    {% if setup_needed %}
+      Setup
+    {% else %}
+      {{ region_tiny_name }}
+    {% endif %}
+  </span>
+</div>

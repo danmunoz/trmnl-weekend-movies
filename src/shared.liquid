@@ -1,0 +1,1109 @@
+{% liquid
+  assign tmdb_notice = "This product uses the TMDB API but is not endorsed or certified by TMDB."
+  assign custom_fields = trmnl.plugin_settings.custom_fields_values | default: blank
+  assign selected_region = custom_fields.region | default: blank
+  assign setup_needed = false
+  assign region_key = selected_region | default: 'united_states'
+  case region_key
+  when 'australia'
+    assign region_code = 'AU'
+    assign region_name = 'Australia'
+    assign region_short_name = 'Australia'
+    assign region_tiny_name = 'Australia'
+  when 'austria'
+    assign region_code = 'AT'
+    assign region_name = 'Austria'
+    assign region_short_name = 'Austria'
+    assign region_tiny_name = 'Austria'
+  when 'belgium'
+    assign region_code = 'BE'
+    assign region_name = 'Belgium'
+    assign region_short_name = 'Belgium'
+    assign region_tiny_name = 'Belgium'
+  when 'brazil'
+    assign region_code = 'BR'
+    assign region_name = 'Brazil'
+    assign region_short_name = 'Brazil'
+    assign region_tiny_name = 'Brazil'
+  when 'canada'
+    assign region_code = 'CA'
+    assign region_name = 'Canada'
+    assign region_short_name = 'Canada'
+    assign region_tiny_name = 'Canada'
+  when 'chile'
+    assign region_code = 'CL'
+    assign region_name = 'Chile'
+    assign region_short_name = 'Chile'
+    assign region_tiny_name = 'Chile'
+  when 'colombia'
+    assign region_code = 'CO'
+    assign region_name = 'Colombia'
+    assign region_short_name = 'Colombia'
+    assign region_tiny_name = 'Colombia'
+  when 'denmark'
+    assign region_code = 'DK'
+    assign region_name = 'Denmark'
+    assign region_short_name = 'Denmark'
+    assign region_tiny_name = 'Denmark'
+  when 'finland'
+    assign region_code = 'FI'
+    assign region_name = 'Finland'
+    assign region_short_name = 'Finland'
+    assign region_tiny_name = 'Finland'
+  when 'france'
+    assign region_code = 'FR'
+    assign region_name = 'France'
+    assign region_short_name = 'France'
+    assign region_tiny_name = 'France'
+  when 'germany'
+    assign region_code = 'DE'
+    assign region_name = 'Germany'
+    assign region_short_name = 'Germany'
+    assign region_tiny_name = 'Germany'
+  when 'hong_kong'
+    assign region_code = 'HK'
+    assign region_name = 'Hong Kong'
+    assign region_short_name = 'Hong Kong'
+    assign region_tiny_name = 'Hong Kong'
+  when 'india'
+    assign region_code = 'IN'
+    assign region_name = 'India'
+    assign region_short_name = 'India'
+    assign region_tiny_name = 'India'
+  when 'ireland'
+    assign region_code = 'IE'
+    assign region_name = 'Ireland'
+    assign region_short_name = 'Ireland'
+    assign region_tiny_name = 'Ireland'
+  when 'italy'
+    assign region_code = 'IT'
+    assign region_name = 'Italy'
+    assign region_short_name = 'Italy'
+    assign region_tiny_name = 'Italy'
+  when 'japan'
+    assign region_code = 'JP'
+    assign region_name = 'Japan'
+    assign region_short_name = 'Japan'
+    assign region_tiny_name = 'Japan'
+  when 'mexico'
+    assign region_code = 'MX'
+    assign region_name = 'Mexico'
+    assign region_short_name = 'Mexico'
+    assign region_tiny_name = 'Mexico'
+  when 'netherlands'
+    assign region_code = 'NL'
+    assign region_name = 'Netherlands'
+    assign region_short_name = 'Netherlands'
+    assign region_tiny_name = 'Netherlands'
+  when 'new_zealand'
+    assign region_code = 'NZ'
+    assign region_name = 'New Zealand'
+    assign region_short_name = 'New Zealand'
+    assign region_tiny_name = 'New Zealand'
+  when 'norway'
+    assign region_code = 'NO'
+    assign region_name = 'Norway'
+    assign region_short_name = 'Norway'
+    assign region_tiny_name = 'Norway'
+  when 'philippines'
+    assign region_code = 'PH'
+    assign region_name = 'Philippines'
+    assign region_short_name = 'Philippines'
+    assign region_tiny_name = 'Philippines'
+  when 'portugal'
+    assign region_code = 'PT'
+    assign region_name = 'Portugal'
+    assign region_short_name = 'Portugal'
+    assign region_tiny_name = 'Portugal'
+  when 'singapore'
+    assign region_code = 'SG'
+    assign region_name = 'Singapore'
+    assign region_short_name = 'Singapore'
+    assign region_tiny_name = 'Singapore'
+  when 'south_africa'
+    assign region_code = 'ZA'
+    assign region_name = 'South Africa'
+    assign region_short_name = 'South Africa'
+    assign region_tiny_name = 'South Africa'
+  when 'south_korea'
+    assign region_code = 'KR'
+    assign region_name = 'South Korea'
+    assign region_short_name = 'South Korea'
+    assign region_tiny_name = 'South Korea'
+  when 'spain'
+    assign region_code = 'ES'
+    assign region_name = 'Spain'
+    assign region_short_name = 'Spain'
+    assign region_tiny_name = 'Spain'
+  when 'sweden'
+    assign region_code = 'SE'
+    assign region_name = 'Sweden'
+    assign region_short_name = 'Sweden'
+    assign region_tiny_name = 'Sweden'
+  when 'switzerland'
+    assign region_code = 'CH'
+    assign region_name = 'Switzerland'
+    assign region_short_name = 'Switzerland'
+    assign region_tiny_name = 'Switzerland'
+  when 'taiwan'
+    assign region_code = 'TW'
+    assign region_name = 'Taiwan'
+    assign region_short_name = 'Taiwan'
+    assign region_tiny_name = 'Taiwan'
+  when 'thailand'
+    assign region_code = 'TH'
+    assign region_name = 'Thailand'
+    assign region_short_name = 'Thailand'
+    assign region_tiny_name = 'Thailand'
+  when 'united_arab_emirates'
+    assign region_code = 'AE'
+    assign region_name = 'United Arab Emirates'
+    assign region_short_name = 'United Arab Emirates'
+    assign region_tiny_name = 'UAE'
+  when 'united_kingdom'
+    assign region_code = 'GB'
+    assign region_name = 'United Kingdom'
+    assign region_short_name = 'United Kingdom'
+    assign region_tiny_name = 'UK'
+  else
+    assign region_code = 'US'
+    assign region_name = 'United States'
+    assign region_short_name = 'United States'
+    assign region_tiny_name = 'US'
+  endcase
+  if selected_region == blank or region_code == blank
+    assign setup_needed = true
+  endif
+
+  assign weekend_label = 'Weekend Picks'
+
+  assign backend = blank
+  assign backend_candidate = IDX_0 | default: blank
+  if backend_candidate != blank and backend_candidate.ok != blank
+    assign backend = backend_candidate
+  elsif backend_candidate != blank and backend_candidate.hero != blank
+    assign backend = backend_candidate
+  elsif backend_candidate != blank and backend_candidate.alternates != blank
+    assign backend = backend_candidate
+  endif
+
+  if backend != blank
+    assign backend_ok = backend.ok
+    assign backend_region = backend.region
+    assign backend_summary = backend.summary
+    assign backend_hero = backend.hero
+    assign backend_alternates = backend.alternates
+    assign backend_attribution = backend.attribution
+  else
+    assign backend_ok = ok
+    assign backend_region = region
+    assign backend_summary = summary
+    assign backend_hero = hero
+    assign backend_alternates = alternates
+    assign backend_attribution = attribution
+  endif
+  assign hero = blank
+  assign support_one = blank
+  assign support_two = blank
+  assign support_three = blank
+  assign status_message = 'Best overall theatrical pick ready.'
+  assign no_results = false
+  assign is_weak_weekend = false
+  assign backend_error = blank
+
+  if backend_region != blank
+    assign region_name = backend_region.name | default: region_name
+    assign region_short_name = backend_region.short_name | default: region_short_name
+  endif
+
+  if backend_attribution != blank and backend_attribution.tmdb_notice != blank
+    assign tmdb_notice = backend_attribution.tmdb_notice
+  endif
+
+  if backend_summary != blank
+    assign is_weak_weekend = backend_summary.weak_slate | default: false
+  endif
+
+  assign hero = backend_hero | default: blank
+  if backend_alternates != blank
+    assign support_one = backend_alternates[0]
+    assign support_two = backend_alternates[1]
+    assign support_three = backend_alternates[2]
+  endif
+
+  if setup_needed == false
+    if backend == blank and backend_ok == blank and backend_hero == blank
+      assign no_results = true
+      assign backend_error = 'The Weekend Movie Picker backend did not return data.'
+      assign status_message = backend_error
+    elsif backend_ok != true
+      assign no_results = true
+      if backend != blank
+        assign backend_error = backend.error | default: 'The Weekend Movie Picker backend returned an error.'
+      else
+        assign backend_error = error | default: 'The Weekend Movie Picker backend returned an error.'
+      endif
+      assign status_message = backend_error
+    elsif hero == blank
+      assign no_results = true
+      assign status_message = 'No movies are currently playing or opening in the current weekend window.'
+    endif
+  endif
+
+  if setup_needed == false and no_results == false and hero != blank
+    if is_weak_weekend
+      assign status_message = 'No strong picks in the current weekend window, but these are the most relevant releases.'
+    else
+      assign status_message = 'Best overall pick for the weekend: ' | append: hero.title
+    endif
+  endif
+
+  if hero != blank
+    assign hero_poster_url = hero.poster_url | default: blank
+    assign hero_release_display = hero.release_date | l_date: '%b %-d', trmnl.user.locale
+    assign hero_runtime_display = hero.runtime_display | default: 'Runtime TBD'
+
+    capture hero_genres_display
+      if hero.genres != blank
+        for genre in hero.genres limit: 2
+          if forloop.index0 > 0
+            echo ' • '
+          endif
+          echo genre
+        endfor
+      endif
+    endcapture
+
+    if support_one != blank
+      assign support_one_poster_url = support_one.poster_thumb_url | default: support_one.poster_url | default: blank
+      assign support_one_release_display = support_one.release_date | l_date: '%b %-d', trmnl.user.locale
+      assign support_one_runtime_display = support_one.runtime_display | default: 'Runtime TBD'
+      capture support_one_genres_display
+        if support_one.genres != blank
+          for genre in support_one.genres limit: 2
+            if forloop.index0 > 0
+              echo ' • '
+            endif
+            echo genre
+          endfor
+        endif
+      endcapture
+    endif
+
+    if support_two != blank
+      assign support_two_poster_url = support_two.poster_thumb_url | default: support_two.poster_url | default: blank
+      assign support_two_release_display = support_two.release_date | l_date: '%b %-d', trmnl.user.locale
+      assign support_two_runtime_display = support_two.runtime_display | default: 'Runtime TBD'
+      capture support_two_genres_display
+        if support_two.genres != blank
+          for genre in support_two.genres limit: 2
+            if forloop.index0 > 0
+              echo ' • '
+            endif
+            echo genre
+          endfor
+        endif
+      endcapture
+    endif
+
+    if support_three != blank
+      assign support_three_poster_url = support_three.poster_thumb_url | default: support_three.poster_url | default: blank
+      assign support_three_release_display = support_three.release_date | l_date: '%b %-d', trmnl.user.locale
+      assign support_three_runtime_display = support_three.runtime_display | default: 'Runtime TBD'
+      capture support_three_genres_display
+        if support_three.genres != blank
+          for genre in support_three.genres limit: 2
+            if forloop.index0 > 0
+              echo ' • '
+            endif
+            echo genre
+          endfor
+        endif
+      endcapture
+    endif
+  endif
+%}
+
+<style>
+  :root {
+    --wm-bg: #ffffff;
+    --wm-panel: #f7f7f7;
+    --wm-ink: #121212;
+    --wm-muted: #595959;
+    --wm-rule: #8f8f8f;
+    --wm-strong-rule: #2d2d2d;
+    --wm-soft-rule: #d8d8d8;
+  }
+
+  .wm-shell {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    padding: 10px 12px 12px;
+    background: var(--wm-bg);
+    color: var(--wm-ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  .wm-shell--full {
+    padding: 6px 8px 8px;
+    gap: 8px;
+    container-type: inline-size;
+    --wm-full-support-card-gap: clamp(10px, 1cqi, 18px);
+    --wm-full-support-grid-gap: clamp(12px, 1.1cqi, 20px);
+  }
+
+  .wm-shell--half-horizontal,
+  .wm-shell--half-vertical {
+    gap: 8px;
+  }
+
+  .wm-film-frame {
+    --wm-film-perf-thickness: 26px;
+    --wm-film-perf-repeat-width: 35px;
+    --wm-film-perf-hole-height: 14px;
+    --wm-film-perf-hole-width: 10px;
+    --wm-film-perf-inline-inset: 0px;
+    --wm-film-perf-block-offset: 4px;
+    position: relative;
+    container-type: size;
+    isolation: isolate;
+  }
+
+  .wm-film-frame > :not(.wm-film-perf) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .wm-film-perf {
+    position: absolute;
+    inset-inline: var(--wm-film-perf-inline-inset);
+    block-size: var(--wm-film-perf-thickness);
+    pointer-events: none;
+    z-index: 0;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35 26' preserveAspectRatio='none'%3E%3Crect x='12.5' y='6' width='10' height='14' rx='3.5' fill='white'/%3E%3C/svg%3E")
+      center / var(--wm-film-perf-repeat-width) 100% repeat-x;
+    background-color: var(--wm-ink);
+  }
+
+  .wm-film-perf--top {
+    inset-block-start: var(--wm-film-perf-block-offset);
+  }
+
+  .wm-film-perf--bottom {
+    inset-block-end: var(--wm-film-perf-block-offset);
+  }
+
+  .wm-shell--quadrant {
+    padding: 10px;
+    gap: 0;
+  }
+
+  .wm-card {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--wm-strong-rule);
+    background: var(--wm-bg);
+    box-sizing: border-box;
+  }
+
+  .wm-recos-card--full {
+    border: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .wm-full-meta {
+    margin: 0;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.22;
+    color: var(--wm-muted);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-kicker {
+    margin: 0;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wm-muted);
+  }
+
+  .wm-poster-frame {
+    overflow: hidden;
+    border: 1px solid var(--wm-strong-rule);
+    background: var(--wm-panel);
+  }
+
+  .wm-poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wm-poster--contain {
+    object-fit: contain;
+  }
+
+  .wm-poster--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--wm-muted);
+    background: linear-gradient(180deg, #f2f2f2, #ededed);
+  }
+
+  .wm-recos-card {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    padding: 12px;
+    overflow: hidden;
+  }
+
+  .wm-recos-list {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  .wm-reco-title {
+    margin: 2px 0 0;
+    font-size: 21px;
+    line-height: 1.08;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-reco-description {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--wm-muted);
+  }
+
+  .wm-recos-card--full {
+    gap: 0;
+  }
+
+  .wm-recos-list--full {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    gap: var(--wm-full-support-grid-gap);
+  }
+
+  .wm-full-grid-film {
+    display: grid;
+    grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--wm-full-support-card-gap);
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+  }
+
+  .wm-poster-frame--full-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    align-self: stretch;
+  }
+
+  .wm-poster-frame--full-grid .wm-poster {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    align-self: flex-start;
+    object-position: top center;
+  }
+
+  .wm-full-grid-copy {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: clamp(4px, 1cqh, 12px);
+    min-height: 0;
+    block-size: 100%;
+    overflow: hidden;
+    align-self: start;
+    align-content: start;
+  }
+
+  .wm-full-grid-film .wm-reco-title--full {
+    margin: 0;
+    font-size: clamp(17px, 9cqh, 31px);
+    line-height: 1.02;
+  }
+
+  .wm-full-grid-film .wm-full-meta {
+    font-size: clamp(12px, 5.1cqh, 17px);
+    line-height: 1.14;
+  }
+
+  .wm-full-grid-summary {
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    align-self: stretch;
+    overflow: hidden;
+    font-size: clamp(13px, 5.7cqh, 19px);
+    line-height: 1.16;
+  }
+
+  .wm-reco-title--full {
+    font-size: 17px;
+    line-height: 1.08;
+  }
+
+  @container (min-width: 1200px) {
+    .wm-shell--full {
+      --wm-full-support-card-gap: clamp(12px, 1cqi, 20px);
+      --wm-full-support-grid-gap: clamp(14px, 1.2cqi, 24px);
+    }
+
+    .wm-full-meta {
+      font-size: 15px;
+    }
+  }
+
+  @container (min-width: 1600px) {
+    .wm-shell--full {
+      --wm-full-support-card-gap: clamp(14px, 1cqi, 22px);
+      --wm-full-support-grid-gap: clamp(16px, 1.3cqi, 28px);
+    }
+
+    .wm-full-meta {
+      font-size: 17px;
+    }
+  }
+
+  .wm-footer {
+    width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--wm-rule);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--wm-muted);
+  }
+
+  .wm-half-strip-card {
+    container-type: inline-size;
+    --wm-half-strip-poster-width: clamp(52px, 10cqw, 88px);
+    border: 0;
+    padding: 0;
+  }
+
+  .wm-half-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2cqi;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .wm-half-strip-movie {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.9cqi;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .wm-poster-frame--half-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wm-half-strip-poster-width);
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+    border: 0;
+    background: transparent;
+  }
+
+  .wm-poster-frame--half-strip .wm-poster {
+    object-fit: contain;
+  }
+
+  .wm-half-strip-copy {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 0.55cqi;
+    min-width: 0;
+    min-height: 0;
+    block-size: calc(var(--wm-half-strip-poster-width) * 1.5);
+    overflow: hidden;
+  }
+
+  .wm-half-strip-title {
+    margin: 0;
+    min-width: 0;
+    font-size: 2.05cqi;
+    line-height: 1.05;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-half-strip-meta {
+    margin: 0;
+    min-width: 0;
+    font-size: 1.35cqi;
+    line-height: 1.18;
+    color: var(--wm-muted);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-half-strip-summary {
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    font-size: 1.6cqi;
+    line-height: 1.18;
+    color: var(--wm-muted);
+    align-self: stretch;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-half-vertical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    flex: 1 1 auto;
+    gap: clamp(6px, 1cqi, 12px);
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .wm-half-vertical-film {
+    display: grid;
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(6px, 0.9cqi, 12px);
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+  }
+
+  .wm-poster-frame--half-vertical-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    align-self: stretch;
+  }
+
+  .wm-poster-frame--half-vertical-grid .wm-poster {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    align-self: flex-start;
+    object-position: top center;
+  }
+
+  .wm-half-vertical-film__copy {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: clamp(3px, 0.9cqh, 8px);
+    min-width: 0;
+    min-height: 0;
+    block-size: 100%;
+    overflow: hidden;
+    align-self: start;
+    align-content: start;
+  }
+
+  .wm-half-vertical-film__title {
+    margin: 0;
+    font-size: clamp(12px, 8.2cqh, 21px);
+    line-height: 1.04;
+  }
+
+  .wm-half-vertical-film__meta {
+    margin: 0;
+    min-width: 0;
+    font-size: clamp(9px, 4.3cqh, 13px);
+    line-height: 1.14;
+    color: var(--wm-muted);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-half-vertical-film__summary {
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    align-self: stretch;
+    overflow: hidden;
+    font-size: clamp(10px, 4.9cqh, 15px);
+    line-height: 1.15;
+    color: var(--wm-muted);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-chip-card {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  .wm-chip-card--quadrant {
+    border: 0;
+    padding: 0;
+  }
+
+  .wm-quadrant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .wm-quadrant-pick {
+    --wm-quadrant-copy-min-height: 18px;
+    --wm-quadrant-pick-gap: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 0;
+    gap: var(--wm-quadrant-pick-gap);
+    overflow: hidden;
+  }
+
+  .wm-poster-frame--quadrant-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    max-height: calc(100% - var(--wm-quadrant-copy-min-height) - var(--wm-quadrant-pick-gap));
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+  }
+
+  .wm-poster-frame--quadrant-tile .wm-poster {
+    object-fit: contain;
+  }
+
+  .wm-quadrant-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    width: 100%;
+    max-width: 100%;
+    align-self: center;
+    min-width: 0;
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+
+  .wm-quadrant-title {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    align-self: stretch;
+    font-size: 11px;
+    line-height: 1.1;
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-quadrant-meta,
+  .wm-quadrant-summary {
+    display: none;
+  }
+
+  .wm-quadrant-meta,
+  .wm-quadrant-summary {
+    margin: 0;
+    min-width: 0;
+    font-size: 9px;
+    line-height: 1.1;
+    color: var(--wm-muted);
+    text-align: left;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-quadrant-meta.wm-quadrant-visible,
+  .wm-quadrant-summary.wm-quadrant-visible {
+    display: block;
+  }
+
+  .wm-quadrant-summary {
+    font-size: 10px;
+    line-height: 1.18;
+    min-height: 0;
+    overflow: hidden;
+    flex: 1 1 auto;
+  }
+
+  .wm-empty {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+  }
+
+  .wm-empty--compact {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .wm-empty__title {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .wm-empty__body {
+    margin: 0;
+    max-width: 36ch;
+    font-size: 15px;
+    line-height: 1.42;
+    color: var(--wm-muted);
+  }
+
+  .wm-empty--compact .wm-empty__title {
+    font-size: 22px;
+  }
+
+  .wm-empty--compact .wm-empty__body {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .wm-line-clamp-1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .wm-line-clamp-2,
+  .wm-line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .wm-line-clamp-2 {
+    -webkit-line-clamp: 2;
+  }
+
+  .wm-line-clamp-3 {
+    -webkit-line-clamp: 3;
+  }
+
+  .wm-js-ready [data-wm-fit-summary="true"] {
+    visibility: visible;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.documentElement.classList.add("wm-js-ready");
+
+    function fitSummaryText(node) {
+      const fullText = (node.dataset.wmFullText || node.textContent || "").trim();
+      if (!fullText) return;
+
+      node.dataset.wmFullText = fullText;
+      node.textContent = fullText;
+
+      const availableHeight = node.clientHeight;
+      if (!availableHeight) return;
+
+      if (node.scrollHeight <= availableHeight + 1) return;
+
+      const words = fullText.split(/\s+/).filter(Boolean);
+      let low = 0;
+      let high = words.length;
+      let best = "";
+
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        const candidate = mid >= words.length ? fullText : words.slice(0, mid).join(" ") + "…";
+        node.textContent = candidate;
+
+        if (node.scrollHeight <= availableHeight + 1) {
+          best = candidate;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+
+      if (best) {
+        node.textContent = best;
+        return;
+      }
+
+      let charLow = 0;
+      let charHigh = fullText.length;
+      let charBest = "";
+
+      while (charLow <= charHigh) {
+        const mid = Math.floor((charLow + charHigh) / 2);
+        const candidate = mid >= fullText.length ? fullText : fullText.slice(0, mid).trimEnd() + "…";
+        node.textContent = candidate;
+
+        if (node.scrollHeight <= availableHeight + 1) {
+          charBest = candidate;
+          charLow = mid + 1;
+        } else {
+          charHigh = mid - 1;
+        }
+      }
+
+      node.textContent = charBest || "…";
+    }
+
+    function fitAllSummaries() {
+      document.querySelectorAll('[data-wm-fit-summary="true"]').forEach(fitSummaryText);
+    }
+
+    function fitQuadrantPick(node) {
+      const poster = node.querySelector('.wm-poster-frame--quadrant-tile');
+      const copy = node.querySelector('.wm-quadrant-copy');
+      const title = node.querySelector('.wm-quadrant-title');
+      const summary = node.querySelector('.wm-quadrant-summary');
+      const optionals = Array.from(node.querySelectorAll('[data-wm-quadrant-optional]')).sort(function(a, b) {
+        const priorityA = Number.parseInt(a.dataset.wmQuadrantPriority || "99", 10);
+        const priorityB = Number.parseInt(b.dataset.wmQuadrantPriority || "99", 10);
+        return priorityA - priorityB;
+      });
+      if (!poster || !copy || !title) return;
+
+      const gapValue = parseFloat(getComputedStyle(node).gap || getComputedStyle(node).rowGap || "0");
+      node.style.setProperty('--wm-quadrant-pick-gap', gapValue + 'px');
+      copy.style.width = Math.ceil(poster.getBoundingClientRect().width) + 'px';
+      copy.style.height = '';
+
+      optionals.forEach(function(item) {
+        item.classList.remove('wm-quadrant-visible');
+      });
+
+      node.style.setProperty('--wm-quadrant-copy-min-height', Math.ceil(title.getBoundingClientRect().height) + 'px');
+
+      if (optionals.length === 0) return;
+
+      const remainingHeight = node.clientHeight - poster.getBoundingClientRect().height - gapValue;
+      const nonSummaryOptionals = optionals.filter(function(item) {
+        return item !== summary;
+      });
+
+      nonSummaryOptionals.forEach(function(item) {
+        item.classList.add('wm-quadrant-visible');
+
+        if (copy.scrollHeight > remainingHeight + 1) {
+          item.classList.remove('wm-quadrant-visible');
+        }
+      });
+
+      if (summary) {
+        const minimumSummaryHeight = 12;
+        const fixedCopyHeight = copy.scrollHeight;
+        const availableSummaryHeight = Math.floor(remainingHeight - fixedCopyHeight);
+
+        if (availableSummaryHeight >= minimumSummaryHeight) {
+          summary.classList.add('wm-quadrant-visible');
+          summary.style.height = availableSummaryHeight + 'px';
+          copy.style.height = Math.max(remainingHeight, 0) + 'px';
+          fitSummaryText(summary);
+        } else {
+          summary.classList.remove('wm-quadrant-visible');
+          summary.style.height = '';
+          copy.style.height = '';
+        }
+      }
+    }
+
+    function fitQuadrantDetails() {
+      document.querySelectorAll('.wm-quadrant-pick').forEach(fitQuadrantPick);
+    }
+
+    requestAnimationFrame(function() {
+      requestAnimationFrame(fitAllSummaries);
+      requestAnimationFrame(fitQuadrantDetails);
+    });
+
+    window.addEventListener('load', fitQuadrantDetails);
+  });
+</script>

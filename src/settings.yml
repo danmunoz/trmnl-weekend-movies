@@ -1,0 +1,163 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 
+serverless_language: 
+polling_url: |-
+  {% if region != blank %}
+  {% liquid
+    assign region_key = region | default: 'united_states'
+    case region_key
+    when 'australia'
+      assign region_code = 'AU'
+    when 'austria'
+      assign region_code = 'AT'
+    when 'belgium'
+      assign region_code = 'BE'
+    when 'brazil'
+      assign region_code = 'BR'
+    when 'canada'
+      assign region_code = 'CA'
+    when 'chile'
+      assign region_code = 'CL'
+    when 'colombia'
+      assign region_code = 'CO'
+    when 'denmark'
+      assign region_code = 'DK'
+    when 'finland'
+      assign region_code = 'FI'
+    when 'france'
+      assign region_code = 'FR'
+    when 'germany'
+      assign region_code = 'DE'
+    when 'hong_kong'
+      assign region_code = 'HK'
+    when 'india'
+      assign region_code = 'IN'
+    when 'ireland'
+      assign region_code = 'IE'
+    when 'italy'
+      assign region_code = 'IT'
+    when 'japan'
+      assign region_code = 'JP'
+    when 'mexico'
+      assign region_code = 'MX'
+    when 'netherlands'
+      assign region_code = 'NL'
+    when 'new_zealand'
+      assign region_code = 'NZ'
+    when 'norway'
+      assign region_code = 'NO'
+    when 'philippines'
+      assign region_code = 'PH'
+    when 'portugal'
+      assign region_code = 'PT'
+    when 'singapore'
+      assign region_code = 'SG'
+    when 'south_africa'
+      assign region_code = 'ZA'
+    when 'south_korea'
+      assign region_code = 'KR'
+    when 'spain'
+      assign region_code = 'ES'
+    when 'sweden'
+      assign region_code = 'SE'
+    when 'switzerland'
+      assign region_code = 'CH'
+    when 'taiwan'
+      assign region_code = 'TW'
+    when 'thailand'
+      assign region_code = 'TH'
+    when 'united_arab_emirates'
+      assign region_code = 'AE'
+    when 'united_kingdom'
+      assign region_code = 'GB'
+    else
+      assign region_code = 'US'
+    endcase
+    assign selected_genres = genres | default: 'all'
+  %}
+  https://trmnl-weekend-moview-api.trmnltkn.workers.dev/v1/picks?region={{ region_code }}&utc_offset={{ trmnl.user.utc_offset }}&locale={{ trmnl.user.locale | url_encode }}{% unless selected_genres contains 'all' %}&genres={{ selected_genres | url_encode }}{% endunless %}
+  {% endif %}
+polling_headers: ''
+polling_body: 
+id: 309303
+custom_fields:
+- keyname: about
+  name: About This Plugin
+  field_type: author_bio
+  category: entertainment,discovery
+  description: 'Poster-led theatrical recommendations built for TRMNL. Choose a region and optional genre filters, and the plugin highlights one overall pick plus two alternate releases from TMDB''s theatrical slate. This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+    '
+- keyname: region
+  name: Region
+  field_type: select
+  description: Choose the theatrical market to evaluate.
+  options:
+  - Australia
+  - Austria
+  - Belgium
+  - Brazil
+  - Canada
+  - Chile
+  - Colombia
+  - Denmark
+  - Finland
+  - France
+  - Germany
+  - Hong Kong
+  - India
+  - Ireland
+  - Italy
+  - Japan
+  - Mexico
+  - Netherlands
+  - New Zealand
+  - Norway
+  - Philippines
+  - Portugal
+  - Singapore
+  - South Africa
+  - South Korea
+  - Spain
+  - Sweden
+  - Switzerland
+  - Taiwan
+  - Thailand
+  - United Arab Emirates
+  - United Kingdom
+  - United States
+  help_text: More regions can be added later, but the initial recipe focuses on the most active theatrical markets.
+- keyname: genres
+  name: Genres
+  field_type: select
+  description: Optional. Filter the theatrical slate to one or more genres.
+  options:
+  - All: all
+  - Action: 28
+  - Adventure: 12
+  - Animation: 16
+  - Comedy: 35
+  - Crime: 80
+  - Documentary: 99
+  - Drama: 18
+  - Family: 10751
+  - Fantasy: 14
+  - History: 36
+  - Horror: 27
+  - Music: 10402
+  - Mystery: 9648
+  - Romance: 10749
+  - Science Fiction: 878
+  - Thriller: 53
+  - War: 10752
+  - Western: 37
+  default: all
+  multiple: true
+  help_text: Use <kbd>⌘</kbd>+<kbd>click</kbd> or <kbd>ctrl</kbd>+<kbd>click</kbd> to select multiple genres. Leave <b>All</b> selected for the full theatrical slate.
+name: Weekend Movie Picker
+refresh_interval: 360

@@ -1,0 +1,126 @@
+<div class="layout layout--col layout--stretch-x wm-shell wm-shell--full">
+  {% if setup_needed %}
+    <section class="wm-empty wm-card">
+      <p class="wm-kicker">Weekend Movie Picker</p>
+      <h1 class="wm-empty__title">Choose your region.</h1>
+      <p class="wm-empty__body">
+        Pick a theatrical market and this screen will surface four theatrical picks for the current weekend window.
+      </p>
+      <p class="wm-footer">{{ tmdb_notice }}</p>
+    </section>
+  {% elsif no_results %}
+    <section class="wm-empty wm-card">
+      <p class="wm-kicker">{{ region_name }} • {{ weekend_label }}</p>
+      <h1 class="wm-empty__title">No usable slate.</h1>
+      <p class="wm-empty__body">
+        {{ status_message }}
+      </p>
+      <p class="wm-footer">{{ tmdb_notice }}</p>
+    </section>
+  {% else %}
+    <section class="wm-card wm-recos-card wm-recos-card--full stretch-y">
+      <div class="wm-recos-list wm-recos-list--full">
+        <article class="wm-full-grid-film">
+          <div class="wm-poster-frame wm-poster-frame--full-grid">
+            {% if hero_poster_url != blank %}
+              <img class="wm-poster wm-poster--contain image image-dither" src="{{ hero_poster_url }}" alt="{{ hero.title }} poster">
+            {% else %}
+              <div class="wm-poster--placeholder">{{ hero.title }}</div>
+            {% endif %}
+          </div>
+
+          <div class="wm-full-grid-copy">
+            <p class="wm-reco-title wm-reco-title--full wm-line-clamp-3" data-pixel-perfect="true">{{ hero.title }}</p>
+            <p class="wm-full-meta wm-line-clamp-2">
+              {{ hero_release_display }} • {{ hero_runtime_display }}
+              {% if hero_genres_display != blank %}
+                • {{ hero_genres_display | strip }}
+              {% endif %}
+            </p>
+            <p class="wm-reco-description wm-full-grid-summary" data-wm-fit-summary="true">{{ hero.overview | strip_html }}</p>
+          </div>
+        </article>
+
+        {% if support_one != blank %}
+          <article class="wm-full-grid-film">
+            <div class="wm-poster-frame wm-poster-frame--full-grid">
+              {% if support_one_poster_url != blank %}
+                <img class="wm-poster wm-poster--contain image image-dither" src="{{ support_one_poster_url }}" alt="{{ support_one.title }} poster">
+              {% else %}
+                <div class="wm-poster--placeholder">{{ support_one.title }}</div>
+              {% endif %}
+            </div>
+
+            <div class="wm-full-grid-copy">
+              <p class="wm-reco-title wm-reco-title--full wm-line-clamp-3" data-pixel-perfect="true">{{ support_one.title }}</p>
+              <p class="wm-full-meta wm-line-clamp-2">
+                {{ support_one_release_display }} • {{ support_one_runtime_display }}
+                {% if support_one_genres_display != blank %}
+                  • {{ support_one_genres_display | strip }}
+                {% endif %}
+              </p>
+              <p class="wm-reco-description wm-full-grid-summary" data-wm-fit-summary="true">{{ support_one.overview | strip_html }}</p>
+            </div>
+          </article>
+        {% endif %}
+
+        {% if support_two != blank %}
+          <article class="wm-full-grid-film">
+            <div class="wm-poster-frame wm-poster-frame--full-grid">
+              {% if support_two_poster_url != blank %}
+                <img class="wm-poster wm-poster--contain image image-dither" src="{{ support_two_poster_url }}" alt="{{ support_two.title }} poster">
+              {% else %}
+                <div class="wm-poster--placeholder">{{ support_two.title }}</div>
+              {% endif %}
+            </div>
+
+            <div class="wm-full-grid-copy">
+              <p class="wm-reco-title wm-reco-title--full wm-line-clamp-3" data-pixel-perfect="true">{{ support_two.title }}</p>
+              <p class="wm-full-meta wm-line-clamp-2">
+                {{ support_two_release_display }} • {{ support_two_runtime_display }}
+                {% if support_two_genres_display != blank %}
+                  • {{ support_two_genres_display | strip }}
+                {% endif %}
+              </p>
+              <p class="wm-reco-description wm-full-grid-summary" data-wm-fit-summary="true">{{ support_two.overview | strip_html }}</p>
+            </div>
+          </article>
+        {% endif %}
+
+        {% if support_three != blank %}
+          <article class="wm-full-grid-film">
+            <div class="wm-poster-frame wm-poster-frame--full-grid">
+              {% if support_three_poster_url != blank %}
+                <img class="wm-poster wm-poster--contain image image-dither" src="{{ support_three_poster_url }}" alt="{{ support_three.title }} poster">
+              {% else %}
+                <div class="wm-poster--placeholder">{{ support_three.title }}</div>
+              {% endif %}
+            </div>
+
+            <div class="wm-full-grid-copy">
+              <p class="wm-reco-title wm-reco-title--full wm-line-clamp-3" data-pixel-perfect="true">{{ support_three.title }}</p>
+              <p class="wm-full-meta wm-line-clamp-2">
+                {{ support_three_release_display }} • {{ support_three_runtime_display }}
+                {% if support_three_genres_display != blank %}
+                  • {{ support_three_genres_display | strip }}
+                {% endif %}
+              </p>
+              <p class="wm-reco-description wm-full-grid-summary" data-wm-fit-summary="true">{{ support_three.overview | strip_html }}</p>
+            </div>
+          </article>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+</div>
+<div class="title_bar">
+  <img class="image" src="https://trmnl.com/images/plugins/trmnl--render.svg" alt="">
+  <span class="title">Weekend Movie Picker</span>
+  <span class="instance">
+    {% if setup_needed %}
+      Setup
+    {% else %}
+      {{ region_short_name }}
+    {% endif %}
+  </span>
+</div>
